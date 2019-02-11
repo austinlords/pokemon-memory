@@ -1,21 +1,95 @@
 <DOCTYPE! html>
   <html>
     <head>
-      <meta charset="UTF-8">
-      <title>Memory Game</title>
-      <link rel="stylesheet" href="style.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Memory Game</title>
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/style.css">
+        <script src="js/bootstrap.js"></script>
+        <script src="js/jquery-3.3.1.js"></script>
+        <script src="js/script.js"></script>
     </head>
     <body>
-      <div class="screen">
-        <div class="header">
-          <div class="timer">
-          <div class="stars">
-          
-      
-    
-      
-      
-      
-      
-      
+      <div class="container">
+        <div class="row mt-1 text-center"> <!-- Title of Webpage -->
+          <div class="col title">
+            <h1>Pokemon Memory</h1>
+          </div>
+        </div>
+        <div class="row scoreboard bg-secondary"> <!-- row for movesCounter, Timer & Stars -->
+          <div class="col-3 movesDiv">
+            <p>Moves: <span id=movesCounter></span></p>
+          </div>
+          <div class="col-3 timerDiv">
+            <p>Timer: <span id="timer"></span></p>
+          </div>
+          <div class="col-3">
+            <p>Stars: <span id="stars"></span></p>
+          </div>
+        </div>
+        <div class="row mt-1 mb-4 cardsRow"> <!-- large row to contain all rows of cards. 30 cards total -->
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
+          </div>
+        </div>
+      </div>
     </body>
+  </html>

@@ -1,0 +1,39 @@
+img {
+  width: inherit;
+  height: inherit;
+  background-color: black;
+}
+
+.cardsRow, .scoreboard {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+}
+
+.first {
+  background-color: red;
+}
+
+.second {
+  background-color: green;
+}
+
+.matched {
+  background-color: white;
+}
+
+.col-2 {
+  padding: 5px;
+  background-color: blue;
+}
+
+@keyframes show {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes hide {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
