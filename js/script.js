@@ -3,7 +3,7 @@ var pokemonDbl = ["charmander", "charmander", "gengar", "gengar", "oddish", "odd
 
 var clickCount = 0;
 var flipCount = 0;
-var imgOne, imgTwo, pairsFound;
+var imgOne, imgTwo, pairsFound, sec, min;
 
 function shuffleArray(array) {
 	var i = pokemonDbl.length;
@@ -14,35 +14,47 @@ function shuffleArray(array) {
     array.splice(r, 1);
 		i--;
   } return newArray;
-};
+}
 
 var shuffledArray = shuffleArray(pokemonDbl);
+
 
 //front-end logic
 $(function() {
 	function addImage(array) {
 		var i = shuffledArray.length;
 		while (i > 0) {
-	    $(".col-2:nth-of-type("+ i +")").append("<img src=images/" + array[i - 1] + ".png>");
-	    //$(".cardDivs:nth-of-type("+ i +")").append("<span>" + array[i - 1] + "</span>");
+	    $(".col-2:nth-of-type("+ i +")").append("<img src=images/" + array[i - 1] + ".png class=''>");
 			i--;
 	  };
 	};
 
-	addImage(shuffledArray);
+	function runningTimer() {
+		sec = parseInt($("#seconds").html());
+		min = parseInt($("#minutes").html());
+		if (sec != 59) {
+			++sec;
+		} else if (sec = 59) {
+			++min;
+			sec = 0;
+		}
+		$("#seconds").html(sec);
+		$("#minutes").html(min);
+	};
 
 	function showImage() {
 		$("img").click(function() {
-	    if (flipCount === 0) {
-	      $(this).toggleClass("first");
+	    if (flipCount === 0 & !$(this).hasClass("matched")) {
+				imgOne = $(this).parent().html();
+				$(this).toggleClass("first");
 	      ++flipCount;
 	      ++clickCount;
-	      imgOne = $(this).html();
-	    } else if (flipCount === 1  && !$(this).hasClass("first")) {
-	      $(this).toggleClass("second");
+				$("#movesCounter").html(clickCount)
+	    } else if (flipCount === 1  && !$(this).hasClass("first") && !$(this).hasClass("matched")) {
+				imgTwo = $(this).parent().html();
+				$(this).toggleClass("second");
 	      ++flipCount;
 	      ++clickCount;
-	      imgTwo = $(this).html();
 	      if (imgOne === imgTwo) {
 	          flipCount = 0;
 	          pairsFound += 1;
@@ -53,14 +65,16 @@ $(function() {
 	        	$(".first").toggleClass("first", false);
 						$(".second").toggleClass("second", false);
 						imgOne = undefined;
-						imagTwo = undefined;
+						imgTwo = undefined;
 	          flipCount = 0;
 	    		}
-	  		}
+					$("#movesCounter").html(clickCount);
+				}
 		});
 	};
 
-
+	setInterval(runningTimer, 1000);
+	addImage(shuffledArray);
 	showImage();
 
 });
