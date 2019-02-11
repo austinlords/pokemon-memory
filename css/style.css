@@ -1,7 +1,12 @@
 img {
   width: inherit;
   height: inherit;
-  background-color: black;
+  background-color: blue;
+}
+
+img:hover {
+  transform: scale(1.1);
+  background-color: darkblue;
 }
 
 .cardsRow, .scoreboard {
@@ -25,7 +30,6 @@ img {
 
 .col-2 {
   padding: 5px;
-  background-color: blue;
 }
 
 @keyframes show {

@@ -49,7 +49,6 @@ $(function() {
 				$(this).toggleClass("first");
 	      ++flipCount;
 	      ++clickCount;
-				$("#movesCounter").html(clickCount)
 	    } else if (flipCount === 1  && !$(this).hasClass("first") && !$(this).hasClass("matched")) {
 				imgTwo = $(this).parent().html();
 				$(this).toggleClass("second");
@@ -68,10 +67,11 @@ $(function() {
 						imgTwo = undefined;
 	          flipCount = 0;
 	    		}
-					$("#movesCounter").html(clickCount);
 				}
+			$("#movesCounter").html(clickCount);
 		});
 	};
+
 
 	setInterval(runningTimer, 1000);
 	addImage(shuffledArray);
