@@ -1,10 +1,10 @@
-img {
+.pokeball {
   width: inherit;
   height: inherit;
   background-color: blue;
 }
 
-img:hover {
+img:not(.matched):not(.first):hover {
   transform: scale(1.1);
   background-color: darkblue;
 }
