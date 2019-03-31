@@ -4,24 +4,41 @@
   background-color: blue;
 }
 
-img:not(.matched):not(.first):hover {
+img:not(.pokePics):hover {
   transform: scale(1.1);
   background-color: darkblue;
 }
 
-.cardsRow, .scoreboard {
+.cardsRow {
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
+  box-shadow: 5px 3px 10px #69e;
+  background-color: #eee;
+  border-radius: 10px;
+  padding: 10px;
 }
 
-.first {
+p {
+  margin: 0;
+}
+
+.scoreboard {
+  color: white;
+  font-weight: 700;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px 0px;
+  border-radius: 5px;
+  box-shadow: 5px 3px 10px #69e;
+  background-color: #69e;
+  text-align: center;
+}
+
+.first, .second {
   background-color: red;
-}
-
-.second {
-  background-color: green;
 }
 
 .matched {
@@ -29,7 +46,7 @@ img:not(.matched):not(.first):hover {
 }
 
 .col-2 {
-  padding: 5px;
+  padding: 3px;
 }
 
 @keyframes show {

@@ -46,17 +46,18 @@ function hideImages(array) {
 function playGame(array) {
 	$(".col-2").click(function() {
 		if (flipCount < 2) {
-			++clickCount;
-			if (clickCount === 1) {
+			if (clickCount === 0) {
 				startTimer();
 			}
 			activePic = $(this).children('.pokePics');
 			if (flipCount === 0 && !activePic.hasClass("matched")) {
 				imgOne = showImage(activePic, 'first');
 				++flipCount;
+				++clickCount
 			}	else if (flipCount === 1  && !activePic.is('.first, .matched')) {
 				imgTwo = showImage(activePic, 'second');
 				++flipCount;
+				++clickCount;
 			}
 			if (flipCount === 2) {
 				var match = checkMatch(imgOne,imgTwo);
