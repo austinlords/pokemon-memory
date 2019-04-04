@@ -26,19 +26,15 @@
   top: 0;
   width: inherit;
   backface-visibility: hidden;
+  overflow: hidden;
 }
 
-.pokeball {
-  width: inherit;
-  height: inherit;
+.card-front {
+  transition: transform .2s;
   background-color: blue;
 }
 
-.card-inner:not(.flip) {
-  transition: transform .2s;
-}
-
-.card-inner:not(.flip):hover {
+.card-front:hover {
   transform: scale(1.05);
   background-color: darkblue;
   cursor: pointer;
@@ -61,7 +57,6 @@ p {
 
 .scoreboard {
   color: white;
-  font-weight: 700;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
@@ -70,7 +65,14 @@ p {
   box-shadow: 5px 3px 10px #69e;
   background-color: #69e;
   text-align: center;
+  font-size: 1.2vw;
 }
+
+.scoreboard:not(span) {
+  font-weight: bold;
+}
+
+
 
 .first, .second {
   background-color: white;
@@ -88,6 +90,21 @@ p {
 
 .col-2 {
   padding: 3px;
+}
+
+.numberOfCards {
+  position: absolute;
+  padding-left: 7em;
+  left: 0;
+  width: 100%;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.modal-header, .modal-footer {
+  display: inline;
 }
 
 @keyframes wiggle {

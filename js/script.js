@@ -1,14 +1,27 @@
 // back-end logic
-const pokemon = ['alakazam', 'articuno', 'ash', 'charmander', 'gameboy', 'gengar', 'gym-leader', 'koffing', 'oddish', 'onix', 'pikachu', 'safari-ball', 'sandslash', 'snorlax', 'training-cards'];
+const allPokemon = ['alakazam', 'articuno', 'ash', 'charmander', 'gameboy', 'gengar', 'gym-leader', 'koffing', 'oddish', 'onix', 'pikachu', 'safari-ball', 'sandslash', 'snorlax', 'training-cards'];
+
+const defaultPokemon = ['alakazam', 'ash', 'charmander', 'gameboy', 'gengar', 'oddish', 'onix', 'pikachu', 'sandslash'];
+
+const easyPokemon = ['alakazam', 'ash', 'charmander', 'gameboy', 'gengar', 'oddish', 'onix', 'pikachu', 'sandslash'];
+
+const avgPokemon = ['alakazam', 'articuno', 'ash', 'charmander', 'gameboy', 'gengar', 'gym-leader', 'koffing', 'onix', 'pikachu', 'sandslash', 'snorlax'];
+
+const hardPokemon = ['alakazam', 'articuno', 'ash', 'charmander', 'gameboy', 'gengar', 'gym-leader', 'koffing', 'oddish', 'onix', 'pikachu', 'safari-ball', 'sandslash', 'snorlax', 'training-cards'];
+
+
 var clickCount = 0;
 var flipCount = 0;
 var pairsFound = 0;
 var sec = 0;
 var min = 0;
+var pairsToWin = 9;
+var selectedLevel = 'easy';
 var imgOne, imgTwo;
+var clockrun = true;
 
 function duplicateArray(array) {
-  array.forEach((element) => {
+	array.forEach((element) => {
 		array.push(element);
 	});
   return array;
@@ -22,12 +35,6 @@ function shuffleArray(array) {
     array.splice(r, 1);
     i--;
   } return array;
-}
-
-function addImages(array) {
-  array.forEach((element, index) => {
-		$('#card'+ (index + 1)).append(`<img src=images/${element}.png class='pokePics img-fluid'>`);
-	});
 }
 
 function showImage(image, cls) {
@@ -54,7 +61,7 @@ function matchNotFound() {
 	$('.first, .second').parent().parent().toggleClass('flip');
   $('.first').toggleClass('first');
   $('.second').toggleClass('second');
-  reset();
+  clearSelections();
 }
 
 function startTimer() {
@@ -62,26 +69,58 @@ function startTimer() {
 }
 
 function runTimer() {
-  if (sec != 59) {
-    ++sec;
-  } else if (sec = 59) {
-    ++min;
-    sec = 0;
-  }
-  $('#seconds').html(sec);
-  $('#minutes').html(min);
+	if (clockrun) {
+		if (sec != 59) {
+			++sec;
+		} else if (sec = 59) {
+			++min;
+			sec = 0;
+		}
+		$('#seconds').html(sec);
+		$('#minutes').html(min);
+	}
 }
 
-function reset() {
+function clearSelections() {
   imgOne = undefined;
   imgTwo = undefined;
   flipCount = 0;
 }
 
 function youWon() {
-  alert(`CONGRATULATIONS! You won in ${clickCount} moves!`);
+clockrun = false;
+	if (min == 1) {
+		var minutes = 'minute';
+	} else {
+		var minutes = 'minutes';
+	}
+  alert(`CONGRATULATIONS! You won in ${clickCount} moves! You completed the game in ${min} ${minutes} and ${sec} seconds.`);
 } 
 
+function launchLevelModal() {
+	$('#levelModal').modal()
+};
+
+function eraseHTML() {
+	$('.cardsRow').empty();
+};
+
+function createHTML(array) {
+	array.forEach(function(element, index) {
+		$('.cardsRow').append(`
+		<div class="col-2 card-container">
+			<div class="card-inner">
+				<div class="card-front">
+					<img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
+				</div>
+				<div class="card-back" id="card${index + 1}">
+					<img src="images/${element}.png" class="pokePics img-fluid">
+				</div>
+			</div>
+		</div>
+		`)
+	})
+};
 
 // front-end logic
 $(() => {
@@ -89,11 +128,13 @@ $(() => {
 	function prepareGame(array) {
 		array = duplicateArray(array);
 		array = shuffleArray(array);
-		addImages(array);
-		playGame(array);
+		pairsToWin = array.length/2;
+		eraseHTML();
+		createHTML(array);
+		playGame();
 	};
 
-	function playGame(array) {
+	function playGame() {
 		$('.card-front').click(function() {
 			if (flipCount < 2) {
 				if (clickCount === 0) {
@@ -114,9 +155,9 @@ $(() => {
 					var match = checkMatch(imgOne,imgTwo);
 					if (match) {
 						matchFound();
-						if (pairsFound < 15) {
-							reset();
-						} else youWon();
+						if (pairsFound < pairsToWin) {
+							clearSelections();
+						} else setTimeout(youWon, 2000);
 					} else {
 						setTimeout(matchNotFound, 1200);
 					}
@@ -125,6 +166,21 @@ $(() => {
 		});
 	};
 
-	prepareGame(pokemon);
-
+	$('#modalSubmit').click(function(event) {
+		event.preventDefault();
+		selectedLevel = $('[name=radio]:checked').val();
+		if (selectedLevel == "easy") {
+			prepareGame(easyPokemon);
+		}
+		if (selectedLevel == "average") {
+			prepareGame(avgPokemon);
+		}
+		if (selectedLevel == "hard") {
+			prepareGame(hardPokemon);
+		}
+	});
+	
+	prepareGame(defaultPokemon);
+	launchLevelModal();
+	
 });

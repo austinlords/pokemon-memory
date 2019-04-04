@@ -25,312 +25,43 @@
           <div class="col-4 movesDiv">
             <p>Moves: <span id='movesCounter'>0</span></p>
           </div>
-          <div class="col-8 timerDiv">
+          <div class="col-4 timerDiv">
             <p>Timer: <span id="minutes">0</span> min  <span id="seconds">0</span> sec</p>
           </div>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="levelModal" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h5 class="modal-title" id="levelTitle">Welcome to Pokemon Memory!</h5>
+              </div>
+              <div class="modal-body">
+                Please select your level from the choices below...<br><br>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="easyRadio" name="radio" class="custom-control-input" value='easy' checked>
+                  <label class="custom-control-label" for="easyRadio"><span class="bold">Easy:</span><span class="numberOfCards">18&nbsp;cards</span></label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="avgRadio" name="radio" class="custom-control-input" value='average'>
+                  <label class="custom-control-label" for="avgRadio"><span class="bold">Average:</span><span class="numberOfCards">24&nbsp;cards</span></label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="hardRadio" name="radio" class="custom-control-input" value='hard'>
+                  <label class="custom-control-label" for="hardRadio"><span class="bold">Hard:</span><span class="numberOfCards">30&nbsp;cards</span></label>
+                </div>
+              </div>
+              <div class="modal-footer text-center">
+                <button id='modalSubmit' type="submit" class="btn btn-primary" data-dismiss='modal'>Play!</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- large row to contain all rows of cards. 30 cards total -->
         <div class="row mt-1 mb-4 cardsRow">
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card1">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card2">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card3">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card4">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card5">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card6">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card7">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card8">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card9">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card10">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card11">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card12">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card13">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card14">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card15">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card16">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card17">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card18">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card19">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card20">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card21">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card22">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card23">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card24">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card25">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card26">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card27">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card28">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card29">
-
-              </div>
-            </div>
-          </div>
-          <div class="col-2 card-container">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
-              </div>
-              <div class="card-back" id="card30">
-
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
     </body>
