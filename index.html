@@ -24,16 +24,18 @@
         <!-- row for movesCounter, Timer & Stars -->
         <div class="row scoreboard"> 
           <div class="col-6 col-md-3">
-            <p>Moves: <span class='movesCounter'>0</span></p>
+            <p>Moves: <span class='movesCounter'></span></p>
           </div>
           <div class="col-6 col-md-3">
-            <p><span class="minutes">0</span> min  <span class="seconds">0</span> sec</p>
+            <p><span class="minutes"></span>&nbsp;min&nbsp;<span class="seconds"></span>&nbsp;sec</p>
           </div>
           <div class="col-6 col-md-3">
-            <p>Level: <span class="level">easy</span></p>
+            <p>Level: <a href='#levelModal' data-toggle="modal" class="level"></a></p>
           </div>
-          <div class='col-1 col-md-3 text-center'>
-            <i style="font-size:20px" class='fa text-center' id='reset' data-toggle="tooltip" data-placement="bottom" title="Refresh the page">&#xf021;</i>
+          <div class='col-6 col-md-3'>
+            <p id='reset' data-toggle="tooltip" data-placement="bottom" title="Reset game">
+              <i style="font-size:16px" class='fa'>&#xf021;</i>
+            reset</p>
           </div>
         </div>
 
@@ -47,7 +49,7 @@
               <div class="modal-body">
                 Please select your level from the choices below...<br><br>
                 <div class="custom-control custom-radio">
-                  <input type="radio" id="easyRadio" name="radio" class="custom-control-input" value='easy' checked>
+                  <input type="radio" id="easyRadio" name="radio" class="custom-control-input" value='easy'>
                   <label class="custom-control-label" for="easyRadio"><span class="bold">Easy:</span><span class="modalData">12&nbsp;cards</span></label>
                 </div>
                 <div class="custom-control custom-radio">
@@ -55,7 +57,7 @@
                   <label class="custom-control-label" for="avgRadio"><span class="bold">Average:</span><span class="modalData">18&nbsp;cards</span></label>
                 </div>
                 <div class="custom-control custom-radio">
-                  <input type="radio" id="hardRadio" name="radio" class="custom-control-input" value='hard'>
+                  <input type="radio" id="hardRadio" name="radio" class="custom-control-input" value='hard' checked>
                   <label class="custom-control-label" for="hardRadio"><span class="bold">Hard:</span><span class="modalData">24&nbsp;cards</span></label>
                 </div>
               </div>

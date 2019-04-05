@@ -1,6 +1,6 @@
 .card-container {
   background-color: transparent;
-  perspective: 1000px; /* for 3D effect */
+  perspective: 800px;
   padding: 2px;
 }
 
@@ -31,6 +31,7 @@ h1, .scoreboard {
   top: 0;
   width: inherit;
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   overflow: hidden;
 }
 
@@ -39,7 +40,7 @@ h1, .scoreboard {
   background-color: blue;
 }
 
-.card-front:hover {
+.can-hover .card-front:hover {
   transform: scale(1.05);
   background-color: darkblue;
   cursor: pointer;
@@ -54,12 +55,13 @@ h1, .scoreboard {
   padding: 10px;
 }
 
-p {
+p, i {
   margin: 0;
 }
 
 #reset {
   cursor: pointer;
+  display: inline-block;
 }
 
 .btnModal {
@@ -75,9 +77,11 @@ p {
   font-weight: bold;
 }
 
+/*
 .movesCounter, .level, .minutes, .seconds, .modalData{
   color: blue;
 }
+*/
 
 .first, .second {
   background-color: white;
@@ -85,8 +89,8 @@ p {
 
 .matched {
   background-color: transparent;
-  animation: wiggle .8s ease-in-out .2s 1 forwards,
-             turnGreen .8s ease-in-out .2s 1 forwards, 
+  animation: wiggle .4s linear .2s 2 alternate,
+             turnGreen 1s linear .2s 1 forwards, 
              shrink .4s ease-in-out 1s forwards;
 }
 
@@ -117,8 +121,8 @@ p {
 
 @keyframes wiggle {
   0% {transform:rotate(10deg);}
-  25% {transform:rotate(-10deg);}
-  50% {transform:rotate(20deg); transform: scale(1.1);}
+  25% {transform:rotate(-10deg); transform: scale(1.1);}
+  50% {transform:rotate(20deg);}
   75% {transform:rotate(-5deg);}
   100% {transform:rotate(0deg); transform: scale(1);}
 }
@@ -130,7 +134,8 @@ p {
 
 @keyframes turnGreen {
   0% {background-color: transparent;}
-  50% {background-color: chartreuse;}
+  25% {background-color: chartreuse;}
+  75% {background-color: chartreuse;}
   100% {background-color: transparent;}
 }
 
@@ -143,14 +148,4 @@ p {
 @keyframes shrink {
   0% {transform:scale(1);}
   100% {transform:scale(.9);}
-}
-
-@keyframes show {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-
-@keyframes hide {
-    from {opacity: 1;}
-    to {opacity: 0;}
 }

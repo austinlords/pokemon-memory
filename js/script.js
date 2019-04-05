@@ -20,15 +20,16 @@ var pairsFound = 0;
 var sec = 0;
 var min = 0;
 var pairsToWin = 6;
-var selectedLevel = 'easy';
+var selectedLevel;
 var imgOne, imgTwo;
-var clockrun = true;
+var clockrun = false;
 
 function duplicateArray(array) {
-	array.forEach((element) => {
-		array.push(element);
+	var newarray = array.slice();
+	newarray.forEach((element) => {
+		newarray.push(element);
 	});
-  return array;
+  return newarray;
 }
 
 function shuffleArray(array) {
@@ -75,6 +76,7 @@ function finishNotFound() {
 }
 
 function startTimer() {
+	clockrun = true;
   setInterval(runTimer, 1000);
 }
 
@@ -131,13 +133,43 @@ function createHTML(array) {
 	})
 };
 
+function resetVariables(array, level) {
+	selectedLevel = level;
+	clockrun = false;
+  imgOne = undefined;
+  imgTwo = undefined;
+  flipCount = 0;
+	clickCount = 0;
+	pairsFound = 0;
+	sec = 0;
+	min = 0;
+	pairsToWin = array.length;
+	$('.movesCounter').html(clickCount);
+	$('.seconds').html(sec);
+	$('.minutes').html(min);
+	$('.level').html(selectedLevel);
+}
+
+
 // front-end logic
 $(() => {
 
-	function prepareGame(array) {
+	function playSelectedLevel() {
+		if (selectedLevel == "easy") {
+			prepareGame(easyPokemon, selectedLevel);
+		}
+		if (selectedLevel == "average") {
+			prepareGame(avgPokemon, selectedLevel);
+		}
+		if (selectedLevel == "hard") {
+			prepareGame(hardPokemon, selectedLevel);
+		}
+	}
+
+	function prepareGame(array, level) {
+		resetVariables(array, level);
 		array = duplicateArray(array);
 		array = shuffleArray(array);
-		pairsToWin = array.length/2;
 		eraseHTML();
 		createHTML(array);
 		playGame();
@@ -147,7 +179,7 @@ $(() => {
 		$('.card-front').on('click', function() {
 			if (flipCount < 2) {
 				if (clickCount === 0) {
-					startTimer();
+					clockrun = true;
 				}
 				activePic = $(this).siblings('.card-back').children();
 				if (flipCount === 0 && !activePic.hasClass('matched')) {
@@ -178,31 +210,14 @@ $(() => {
 	$('#modalSubmit').click(function(event) {
 		event.preventDefault();
 		selectedLevel = $('[name=radio]:checked').val();
-		$('.level').html(selectedLevel);
-		if (selectedLevel == "easy") {
-			prepareGame(easyPokemon);
-		}
-		if (selectedLevel == "average") {
-			prepareGame(avgPokemon);
-		}
-		if (selectedLevel == "hard") {
-			prepareGame(hardPokemon);
-		}
+		playSelectedLevel();
 	});
 
-	$('#playAgain').click(function() {
-		location.reload();
+	$('#playAgain, #levelSelector, #reset').click(function() {
+		playSelectedLevel();
 	});
-
-	$('#levelSelector').click(function() {
-		launchLevelModal();
-	});
-
-	$('#reset').click(function() {
-		location.reload();
-	})
 	
-	prepareGame(defaultPokemon);
-	setTimeout(launchLevelModal, 200);
+	setInterval(runTimer, 1000);
+	prepareGame(hardPokemon, 'hard');
 	
 });
