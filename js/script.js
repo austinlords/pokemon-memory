@@ -144,7 +144,7 @@ $(() => {
 	};
 
 	function playGame() {
-		$('.card-front').click(function() {
+		$('.card-front').on('click', function() {
 			if (flipCount < 2) {
 				if (clickCount === 0) {
 					startTimer();

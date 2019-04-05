@@ -39,13 +39,11 @@ h1, .scoreboard {
   background-color: blue;
 }
 
-/*
 .card-front:hover {
   transform: scale(1.05);
   background-color: darkblue;
   cursor: pointer;
 }
-*/
 
 .cardsRow {
   max-width: 700px;
