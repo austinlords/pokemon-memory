@@ -9,6 +9,10 @@ const avgPokemon = ['alakazam', 'articuno', 'ash', 'charmander', 'gengar', 'koff
 
 const hardPokemon = ['alakazam', 'articuno', 'ash', 'charmander', 'gameboy', 'gengar', 'koffing', 'oddish', 'onix', 'pikachu', 'sandslash', 'snorlax'];
 
+const canHover = !(matchMedia('(hover: none)').matches);
+if(canHover) {
+document.body.classList.add('can-hover');
+}
 
 var clickCount = 0;
 var flipCount = 0;

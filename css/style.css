@@ -39,7 +39,7 @@ h1, .scoreboard {
   background-color: blue;
 }
 
-.card-front:hover {
+.can-hover .card-front:hover {
   transform: scale(1.05);
   background-color: darkblue;
   cursor: pointer;
