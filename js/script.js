@@ -1,13 +1,13 @@
 // back-end logic
 const allPokemon = ['alakazam', 'articuno', 'ash', 'charmander', 'gameboy', 'gengar', 'gym-leader', 'koffing', 'oddish', 'onix', 'pikachu', 'safari-ball', 'sandslash', 'snorlax', 'training-cards'];
 
-const defaultPokemon = ['alakazam', 'ash', 'charmander', 'gameboy', 'gengar', 'oddish', 'onix', 'pikachu', 'sandslash'];
+const defaultPokemon =  ['alakazam', 'ash', 'charmander', 'gengar', 'onix', 'pikachu'];
 
-const easyPokemon = ['alakazam', 'ash', 'charmander', 'gameboy', 'gengar', 'oddish', 'onix', 'pikachu', 'sandslash'];
+const easyPokemon = ['alakazam', 'ash', 'charmander', 'gengar', 'onix', 'pikachu'];
 
-const avgPokemon = ['alakazam', 'articuno', 'ash', 'charmander', 'gameboy', 'gengar', 'gym-leader', 'koffing', 'onix', 'pikachu', 'sandslash', 'snorlax'];
+const avgPokemon = ['alakazam', 'articuno', 'ash', 'charmander', 'gengar', 'koffing', 'pikachu', 'sandslash', 'snorlax'];
 
-const hardPokemon = ['alakazam', 'articuno', 'ash', 'charmander', 'gameboy', 'gengar', 'gym-leader', 'koffing', 'oddish', 'onix', 'pikachu', 'safari-ball', 'sandslash', 'snorlax', 'training-cards'];
+const hardPokemon = ['alakazam', 'articuno', 'ash', 'charmander', 'gameboy', 'gengar', 'koffing', 'oddish', 'onix', 'pikachu', 'sandslash', 'snorlax'];
 
 
 var clickCount = 0;
@@ -15,7 +15,7 @@ var flipCount = 0;
 var pairsFound = 0;
 var sec = 0;
 var min = 0;
-var pairsToWin = 9;
+var pairsToWin = 6;
 var selectedLevel = 'easy';
 var imgOne, imgTwo;
 var clockrun = true;
@@ -58,10 +58,16 @@ function matchFound() {
 }
 
 function matchNotFound() {
+	$('.first, .second').toggleClass('incorrect');
+  setTimeout(finishNotFound, 1200);
+}
+
+function finishNotFound() {
+	$('.first, .second').toggleClass('incorrect');
 	$('.first, .second').parent().parent().toggleClass('flip');
-  $('.first').toggleClass('first');
-  $('.second').toggleClass('second');
-  clearSelections();
+	$('.first').toggleClass('first');
+	$('.second').toggleClass('second');
+	clearSelections();
 }
 
 function startTimer() {
@@ -76,8 +82,8 @@ function runTimer() {
 			++min;
 			sec = 0;
 		}
-		$('#seconds').html(sec);
-		$('#minutes').html(min);
+		$('.seconds').html(sec);
+		$('.minutes').html(min);
 	}
 }
 
@@ -88,17 +94,16 @@ function clearSelections() {
 }
 
 function youWon() {
-clockrun = false;
-	if (min == 1) {
-		var minutes = 'minute';
-	} else {
-		var minutes = 'minutes';
-	}
-  alert(`CONGRATULATIONS! You won in ${clickCount} moves! You completed the game in ${min} ${minutes} and ${sec} seconds.`);
+	clockrun = false;
+  launchScoreModal();
 } 
 
 function launchLevelModal() {
 	$('#levelModal').modal()
+};
+
+function launchScoreModal() {
+	$('#scoreModal').modal()
 };
 
 function eraseHTML() {
@@ -108,7 +113,7 @@ function eraseHTML() {
 function createHTML(array) {
 	array.forEach(function(element, index) {
 		$('.cardsRow').append(`
-		<div class="col-2 card-container">
+		<div class="col-3 col-md-2 card-container">
 			<div class="card-inner">
 				<div class="card-front">
 					<img src="images/pokeball.png" alt="pokemon ball" class="pokeball img-fluid">
@@ -150,7 +155,7 @@ $(() => {
 					++flipCount;
 					++clickCount;
 				}
-				$('#movesCounter').html(clickCount);
+				$('.movesCounter').html(clickCount);
 				if (flipCount === 2) {
 					var match = checkMatch(imgOne,imgTwo);
 					if (match) {
@@ -159,7 +164,7 @@ $(() => {
 							clearSelections();
 						} else setTimeout(youWon, 2000);
 					} else {
-						setTimeout(matchNotFound, 1200);
+						setTimeout(matchNotFound, 200);
 					}
 				}
 			}
@@ -169,6 +174,7 @@ $(() => {
 	$('#modalSubmit').click(function(event) {
 		event.preventDefault();
 		selectedLevel = $('[name=radio]:checked').val();
+		$('.level').html(selectedLevel);
 		if (selectedLevel == "easy") {
 			prepareGame(easyPokemon);
 		}
@@ -179,8 +185,20 @@ $(() => {
 			prepareGame(hardPokemon);
 		}
 	});
+
+	$('#playAgain').click(function() {
+		location.reload();
+	});
+
+	$('#levelSelector').click(function() {
+		launchLevelModal();
+	});
+
+	$('#reset').click(function() {
+		location.reload();
+	})
 	
 	prepareGame(defaultPokemon);
-	launchLevelModal();
+	setTimeout(launchLevelModal, 200);
 	
 });
